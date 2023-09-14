@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.410.0",
+    "@aws-sdk/client-ec2": "^3.411.0",
+    "@aws-sdk/client-s3": "^3.410.0",
+    "@aws-sdk/lib-dynamodb": "^3.410.0",
+    "@aws-sdk/s3-request-presigner": "^3.410.0",
+    "nanoid": "^5.0.1"
+  }
+}

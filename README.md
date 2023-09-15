@@ -25,7 +25,12 @@ Before deployment, you have to make sure that you have installed the following:
 
 First Step: 
 ```
+# install cdk cli
+npm install -g aws-cdk
+# make sure cdk is available on your system
+cdk --version
 cd hellocdk
+# download dependencies needed for lambda layer 
 npm install --prefix dep
 npm install
 ```

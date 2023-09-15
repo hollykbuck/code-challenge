@@ -16,7 +16,7 @@ I have deployed the project to AWS. You can access the website via the following
 
 ## Deploy
 
-> Front end part is prebuilt in convenience of deployment. If you want to build it by yourself, please view front end code repository https://github.com/hollykbuck/ccfrontend .
+> Front end part is prebuilt in convenience of deployment. If you want to build it by yourself, please view front end code repository https://github.com/hollykbuck/ccfrontend . Build it and copy `dist` to `public` in this repo. I have a [github action](https://github.com/hollykbuck/ccfrontend/actions/workflows/node.js.yml) build it automatically and you can download the artifact [here](https://github.com/hollykbuck/ccfrontend/suites/16190681253/artifacts/924583710). 
 
 Before deployment, you have to make sure that you have installed the following:
 1. aws cli (`aws configure` your IAM account, your account should have enough permission to create resources in AWS)

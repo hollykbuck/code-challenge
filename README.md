@@ -54,6 +54,13 @@ This project is a part of the Code Challenge CDK Project. It contains the follow
 5. `script` folder contains the script which will be evaluated in EC2 instance
 6. `resources` folder contains the lambda function code
 
+**lambda**
+There are three lambda functions, which is presigned, submit and exe. 
+
+`presigned` and `submit` are triggered by API gateway. `exe` is triggered by DynamoDB stream,
+it will create a vm and let the vm run a script automatically. `presigned` lambda create a presigned
+s3 putobject link for user to upload their file. `submit` lambda saves data to dynamodb. 
+
 ## Goals
 
 - [x] Use AWS CDK to manage AWS infrastructure (latest version)

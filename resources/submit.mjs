@@ -6,7 +6,6 @@ const TABLE = process.env.TABLE
 const BUCKET = process.env.BUCKET
 
 export const handler = async (event) => {
-    // TODO implement
     const data = JSON.parse(event.body)
     const dbclient = new DynamoDBClient({
         region: REGION
@@ -25,7 +24,7 @@ export const handler = async (event) => {
         statusCode: 200,
         body: JSON.stringify({
             message: 'Hello from Lambda!',
-            payload: resp
+            payload: ""
         }),
         headers: {
             "Access-Control-Allow-Headers": "Content-Type",

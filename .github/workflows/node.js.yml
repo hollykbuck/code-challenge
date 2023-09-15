@@ -25,4 +25,3 @@ jobs:
     - run: npm install --prefix dep
     - run: npm run build
     - run: npm install -g aws-cdk
-    - run: cdk synth

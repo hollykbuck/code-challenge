@@ -31,6 +31,9 @@ npm install
 ```
 
 Second Step:
+
+> You **Must** replace `[your account arn]` with your own iam account arn.
+
 ```
 npm run build
 

@@ -7,6 +7,8 @@ const SCRIPTFILE = process.env.SCRIPTFILE
 const SCRIPT = `
 #cloud-config
 runcmd:
+- mkdir /tmp/buslogstack
+- cd /tmp/buslogstack
 - aws s3 cp s3://${BUCKET}/${SCRIPTFILE} .
 - bash ./${basename(SCRIPTFILE)} -i #### -b ${BUCKET} -t ${TABLE}
 - systemctl poweroff

@@ -21,6 +21,7 @@ export class BusinessLogicService extends Construct {
     new s3deploy.BucketDeployment(this, 'DeployScript', {
       sources: [s3deploy.Source.asset('script')],
       destinationBucket: bucket,
+      destinationKeyPrefix: 'script',
     });
     bucket.addCorsRule({
       allowedMethods: [
@@ -29,6 +30,7 @@ export class BusinessLogicService extends Construct {
       allowedOrigins: ['*'],
       allowedHeaders: ['*'],
     });
+    
     const role = new iam.Role(this, 'Role', {
       assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
       managedPolicies: [
@@ -39,6 +41,9 @@ export class BusinessLogicService extends Construct {
           managedPolicyArn: 'arn:aws:iam::aws:policy/AmazonS3FullAccess'
         }
       ],
+    });
+    const profile = new iam.CfnInstanceProfile(this, 'InstanceProfile', {
+      roles: [role.roleName],
     });
     const table = new dynamodb.Table(this, 'FileTable', {
       partitionKey: { name: 'id', type: dynamodb.AttributeType.STRING },
@@ -78,7 +83,7 @@ export class BusinessLogicService extends Construct {
         TABLE: table.tableName,
         SECURITY_GROUP: securityGroup.securityGroupId,
         REGION: REGION,
-        IAMROLE: role.roleArn,
+        IAMROLE: profile.attrArn,
         SCRIPTFILE: SCRIPTFILE,
       },
       layers: [depLayer],
@@ -92,6 +97,11 @@ export class BusinessLogicService extends Construct {
     executeHandler.role?.addManagedPolicy(
       {
         managedPolicyArn: "arn:aws:iam::aws:policy/service-role/AWSLambdaDynamoDBExecutionRole"
+      }
+    )
+    executeHandler.role?.addManagedPolicy(
+      {
+        managedPolicyArn: "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
       }
     )
     executeHandler.addEventSourceMapping('trigger', {
@@ -118,6 +128,23 @@ export class BusinessLogicService extends Construct {
       resources: ["*"],
     });
     executeHandler.addToRolePolicy(policy);
+    const staticWebsiteBucket = new s3.Bucket(this, 'staticWebsiteBucket', {
+      blockPublicAccess: {
+        blockPublicAcls: false,
+        blockPublicPolicy: false,
+        ignorePublicAcls: false,
+        restrictPublicBuckets: false,
+      },
+      websiteIndexDocument: 'index.html',
+      publicReadAccess: true,
+    });
+    new s3deploy.BucketDeployment(this, 'DeployWebsite', {
+      sources: [s3deploy.Source.asset('public'), s3deploy.Source.jsonData('config.json', {
+        "url": api.url
+      })],
+      destinationBucket: staticWebsiteBucket,
+    });
+    console.log("Static Website URL: ", staticWebsiteBucket.bucketWebsiteUrl)
   }
 }
 

@@ -1,5 +1,19 @@
 # Welcome to Code Challenge CDK Project Part
 
+## Preview
+
+I have deployed the project to AWS. You can access the website via the following link: http://hellocdkstack-businesslogicservicestaticwebsitebu-17z4kkszqbvz0.s3-website-ap-southeast-1.amazonaws.com/
+
+![Preview](assets/pic1.png)
+<details>
+
+<summary>More Preview</summary>
+
+![Preview](assets/sc.png)
+![Preview](assets/pic2.png)
+![Preview](assets/pic3.png)
+</details>
+
 ## Deploy
 
 Before deployment, you have to make sure that you have installed the following:
@@ -9,25 +23,30 @@ Before deployment, you have to make sure that you have installed the following:
 
 First Step: 
 ```
+cd hellocdk
 npm install --prefix dep
+npm install
 ```
 
 Second Step:
 ```
+npm run build
 cdk synth
 cdk boostrap
 cdk deploy
 ``````
 
+After `cdk deploy`, the static website will be available in s3. You can access it via `staticWebsiteBucket` s3 Bucket Website Endpoint in `HellocdkStack`.
+
 ## Project Structure
 
 This project is a part of the Code Challenge CDK Project. It contains the following:
-1. lib/hellocdk-stack.ts contains the CDK stack definition
-2. lib/hellocdk.ts is the entry point of the CDK app
-3. public folder contains the static web content. 
-4. dep folder contains the lambda function dependencies layer
-5. script folder contains the script which will be evaluated in EC2 instance
-6. resources folder contains the lambda function code
+1. `lib/hellocdk-stack.ts` contains the CDK stack definition
+2. `bin/hellocdk.ts` is the entry point of the CDK app
+3. `public` folder contains the static web content. 
+4. `dep` folder contains the lambda function dependencies layer
+5. `script` folder contains the script which will be evaluated in EC2 instance
+6. `resources` folder contains the lambda function code
 
 ## Goals
 

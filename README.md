@@ -16,6 +16,8 @@ I have deployed the project to AWS. You can access the website via the following
 
 ## Deploy
 
+> Front end part is prebuilt in convenience of deployment. If you want to build it by yourself, please view front end code repository https://github.com/hollykbuck/ccfrontend .
+
 Before deployment, you have to make sure that you have installed the following:
 1. aws cli (`aws configure` your IAM account, your account should have enough permission to create resources in AWS)
 2. nodejs 18

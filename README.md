@@ -33,6 +33,10 @@ npm install
 Second Step:
 ```
 npm run build
+
+export CDK_DEFAULT_ACCOUNT=[your account arn]
+export CDK_DEFAULT_REGION=ap-southeast-1
+
 cdk synth
 cdk boostrap
 cdk deploy

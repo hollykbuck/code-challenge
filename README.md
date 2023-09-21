@@ -2,7 +2,7 @@
 
 ## Preview
 
-I have deployed the project to AWS. You can access the website via the following link: http://hellocdkstack-businesslogicservicestaticwebsitebu-17z4kkszqbvz0.s3-website-ap-southeast-1.amazonaws.com/
+I have deployed the project to AWS. 
 
 ![Preview](assets/pic1.png)
 <details>
